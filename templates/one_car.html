@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automobilio informacija</title>
+</head>
+<body>
+    <h1>Automobilio informacija</h1>
+
+    <div>
+        <p><strong>Gamintojas:</strong> {{ car.gamintojas }}</p>
+        <p><strong>Modelis:</strong> {{ car.modelis }}</p>
+        <p><strong>Spalva:</strong> {{ car.spalva }}</p>
+        <p><strong>Metai:</strong> {{ car.metai }}</p>
+        <p><strong>Kaina:</strong> {{ car.kaina }} €</p>
+    </div>
+
+    <a href="{{ url_for('update_car', id=car.id) }}">Redaguoti</a>
+<form style="display: inline;" method="POST" action="{{ url_for('delete_car', id=car.id) }}">
+    <button type="submit">Trinti</button>
+</form>
+<a href="{{ url_for('home') }}">Grįžti į sąrašą</a>
+
+</body>
+</html>

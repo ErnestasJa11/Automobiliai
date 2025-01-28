@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redaguoti Automobilį</title>
+</head>
+<body>
+    <h1>Redaguoti automobilį</h1>
+
+    <form method="POST">
+        <p>
+            <label>Gamintojas:</label><br>
+            <input type="text" name="gamintojas" value="{{ car.gamintojas }}" required>
+        </p>
+        <p>
+            <label>Modelis:</label><br>
+            <input type="text" name="modelis" value="{{ car.modelis }}" required>
+        </p>
+        <p>
+            <label>Spalva:</label><br>
+            <input type="text" name="spalva" value="{{ car.spalva }}" required>
+        </p>
+        <p>
+            <label>Metai:</label><br>
+            <input type="number" name="metai" value="{{ car.metai }}" required>
+        </p>
+        <p>
+            <label>Kaina:</label><br>
+            <input type="number" step="0.01" name="kaina" value="{{ car.kaina }}" required>
+        </p>
+        <p>
+            <button type="submit">Atnaujinti</button>
+            <a href="{{ url_for('home') }}">Atšaukti</a>
+        </p>
+    </form>
+</body>
+</html>

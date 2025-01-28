@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automobilių katalogas</title>
+    <style>
+        body{
+        background-color: #dfd7d7
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Automobilių katalogas</h1>
+
+    <form method="GET" action="{{ url_for('home') }}">
+        <input type="text" name="search" placeholder="Ieškoti...">
+        <button type="submit">Ieškoti</button>
+    </form>
+
+    <a href="{{ url_for('create_car') }}">Pridėti naują automobilį</a>
+
+    <table border="1">
+        <tr>
+            <th>Gamintojas</th>
+            <th>Modelis</th>
+            <th>Spalva</th>
+            <th>Metai</th>
+            <th>Kaina</th>
+            <th>Veiksmai</th>
+        </tr>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.gamintojas }}</td>
+            <td>{{ car.modelis }}</td>
+            <td>{{ car.spalva }}</td>
+            <td>{{ car.metai }}</td>
+            <td>{{ car.kaina }}</td>
+            <td>
+                <a href="{{ url_for('one_car', id=car.id) }}">Peržiūrėti</a>
+                <a href="{{ url_for('update_car', id=car.id) }}">Redaguoti</a>
+                <form style="display: inline;" method="POST" action="{{ url_for('delete_car', id=car.id) }}">
+                    <button type="submit">Trinti</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
