@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, Automobilis
-
+from pydantic import BaseModel
+from typing import List
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///automobiliai.db'
@@ -77,6 +78,17 @@ def delete_car(id):
         db.session.delete(car)
         db.session.commit()
     return redirect(url_for("home"))
+
+@app.route("/api/automobiliai", methods=["GET"])
+def get_cars():
+    cars = Automobilis.query.all()
+    cars_list = [{"id": car.id, "gamintojas": car.gamintojas,
+                  "modelis": car.modelis,
+                  "spalva": car.spalva,
+                  "metai": car.metai,
+                  "kaina": car.kaina}
+                 for car in cars]
+    return jsonify(cars_list)
 
 
 if __name__ == "__main__":
